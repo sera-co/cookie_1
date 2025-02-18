@@ -20,4 +20,21 @@ document.addEventListener('DOMContentLoaded', function() {
   // 4. Display the count on the webpage
 
   // your code here
+  function initializeCookie() {
+    if (!getCookie("count")) {
+        setCookie("count", 0, 7); // Set initial count to 0 with a 7-day expiration
+    }
+}
+function incrementCount() {
+  let count = getCookie("count");
+  count = count ? parseInt(count) + 1 : 1; // Increment count or start at 1
+  return count;
+}
+function displayCount() {
+  let count = incrementCount();
+  setCookie("count", count, 7); // Update the cookie with the new count
+  document.getElementById("countDisplay").textContent = `You have visited this page ${count} times.`;
+}
+initializeCookie();
+displayCount();
 });
